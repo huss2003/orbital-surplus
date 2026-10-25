@@ -69,3 +69,4 @@
 .footer > :last-child { text-align: right; }
 @media (max-width: 768px) { .footer-tagline { display: none; } .footer-copy { letter-spacing: normal; font-size: 10px; } }
 @media (max-width: 560px) { .nav-hide-sm { display: none; } }
+@media (max-width: 440px) { .nav-hide-xs { display: none; } }

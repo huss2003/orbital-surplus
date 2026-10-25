@@ -17,7 +17,7 @@ export function createNavbar({ onCart }) {
   const navLink = (label, href, extra = {}) => h('a', { class: 'nav-link', href, 'data-nav': href, ...extra }, scramble(label, PRESET.nav));
 
   const soundState = h('span', { class: 'sound-state' }, sound.enabled ? '[ON]' : '[OFF]');
-  const soundBtn = h('button', { class: 'nav-link nav-sound', type: 'button', 'aria-pressed': String(sound.enabled), 'aria-label': 'Sound' }, scramble('SOUND', PRESET.nav), soundState);
+  const soundBtn = h('button', { class: 'nav-link nav-sound nav-hide-xs', type: 'button', 'aria-pressed': String(sound.enabled), 'aria-label': 'Sound' }, scramble('SOUND', PRESET.nav), soundState);
   soundBtn.addEventListener('click', () => { sound.toggle(); });
   on('sound', (v) => { soundBtn.setAttribute('aria-pressed', String(v)); soundState.textContent = v ? '[ON]' : '[OFF]'; });
 
