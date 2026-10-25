@@ -1,0 +1,5 @@
+{
+  "//": "Lets `node --test test/` work on Node 22+, which treats the argument as a module path (Node 18/20 scan the folder instead).",
+  "type": "module",
+  "main": "api.test.mjs"
+}

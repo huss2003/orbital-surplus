@@ -1,0 +1,20 @@
+{
+  "name": "orbital-surplus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ORBITAL SURPLUS — a full-stack WebGL outerwear store: real-time 3D/AR storefront, Postgres, Stripe Checkout, customer accounts and a depot admin.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node --watch server/server.js",
+    "start": "node server/server.js",
+    "test": "node --test test/"
+  },
+  "dependencies": {
+    "postgres": "^3.4.9"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.11"
+  },
+  "license": "MIT"
+}

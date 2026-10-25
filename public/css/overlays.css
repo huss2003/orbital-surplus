@@ -1,0 +1,71 @@
+/* =============================================================================
+   overlays.css — dialogs: Info (DESCRIPTION / MATERIAL / SIZE GUIDE), Contact,
+   Cart drawer, AR viewer modal, gallery. Open/close is GSAP autoAlpha (§4.7).
+   ========================================================================== */
+.overlay {
+  position: fixed; inset: 0; z-index: var(--z-info); background: var(--scrim);
+  visibility: hidden; opacity: 0; overflow-y: auto; overscroll-behavior: contain;
+}
+.overlay--modal { z-index: var(--z-modal); }
+.overlay-inner { position: relative; min-height: 100%; padding: var(--overlay-pad); padding-top: calc(var(--close-top) + 3rem); }
+.overlay-close { position: fixed; top: var(--close-top); left: var(--close-left); z-index: 2; }
+.overlay-title { font-size: var(--fs-body); font-weight: 400; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 1.25rem; }
+.overlay-body { width: 100%; max-width: 36vw; color: var(--fg-96); line-height: 1.7; white-space: pre-line; }
+.overlay-body ol { padding-left: 1.4em; margin: 0 0 1.5rem; }
+.overlay-sub { font-size: var(--fs-body); letter-spacing: .1em; text-transform: uppercase; margin: 1.75rem 0 .75rem; font-weight: 400; }
+@media (max-width: 1024px) { .overlay-body { max-width: 60vw; } }
+@media (max-width: 768px) { .overlay-body { max-width: 85vw; } .overlay-close { top: 6vw; left: 6vw; } .overlay-inner { padding-top: 22vw; } }
+
+/* size table: .5px rules top + bottom only, every cell a ScrambleText */
+.unit-toggle { display: flex; gap: 1rem; margin-bottom: 1.25rem; }
+.unit-toggle button { appearance: none; background: none; border: 0; padding: 0; cursor: pointer; color: var(--fg-60); letter-spacing: .1em; }
+.unit-toggle button[aria-pressed="true"] { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.size-table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.size-table caption { text-align: left; color: var(--fg-60); font-size: 10px; letter-spacing: .1em; padding-bottom: .5rem; text-transform: uppercase; }
+.size-table th, .size-table td { padding: .55rem .4rem; border-top: .5px solid var(--fg-20); border-bottom: .5px solid var(--fg-20); text-align: right; font-weight: 400; }
+.size-table th:first-child { text-align: left; }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 120px) minmax(0, 1fr); column-gap: 3.5rem; row-gap: 1.75rem; max-width: 40vw; }
+.contact-grid dt { font-size: 13px; letter-spacing: .14em; color: var(--fg-60); text-transform: uppercase; }
+.contact-grid dd { margin: 0; color: var(--fg-96); }
+@media (max-width: 1024px) { .contact-grid { column-gap: 2rem; max-width: 70vw; } }
+@media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; row-gap: 1.25rem; max-width: 85vw; } }
+
+/* Cart drawer: right-hand panel on the same scrim */
+.overlay--drawer { background: rgba(0, 0, 0, .6); overflow: hidden; }
+.drawer {
+  position: absolute; top: 0; right: 0; bottom: 0; width: min(440px, 100vw); background: #000;
+  border-left: 1px dashed var(--fg-20); display: flex; flex-direction: column; padding: 1.5rem 1.25rem; overflow-y: auto;
+}
+.drawer-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: .1em; }
+.drawer-head h2 { font-size: var(--fs-body); font-weight: 400; margin: 0; }
+
+/* AR viewer modal + /ar page */
+.ar-stage { position: fixed; inset: 0; background: #000; z-index: var(--z-gallery); }
+.overlay--ar { background: #000; z-index: var(--z-modal); overflow: hidden; }
+.ar-viewer { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; }
+.ar-viewer.is-ready { opacity: 1; }
+.ar-viewer canvas { width: 100% !important; height: 100% !important; touch-action: none; }
+.ar-close { position: absolute; top: var(--close-top); left: var(--close-left); z-index: 3; }
+.ar-name { position: absolute; top: var(--close-top); right: var(--close-left); z-index: 3; margin: 0; font-size: var(--fs-body); font-weight: 400; text-transform: uppercase; letter-spacing: .1em; }
+.ar-actions { position: absolute; left: 50%; bottom: calc(var(--u) * 3); transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: .75rem; text-align: center; }
+.ar-hint { font-size: 10px; letter-spacing: .12em; color: var(--fg-60); text-transform: uppercase; max-width: 80vw; }
+.ar-qr { display: none; background: #fff; padding: 10px; width: 148px; height: 148px; }
+.ar-qr.is-open { display: block; }
+.ar-qr svg { width: 100%; height: 100%; }
+.ar-qr-url { font-size: 9px; letter-spacing: .08em; color: var(--fg-40); word-break: break-all; max-width: 240px; }
+.ar-launcher { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden; }
+.ar-404 { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 1rem; }
+.ar-404 strong { font-size: 48px; color: var(--red-hover); letter-spacing: .1em; font-weight: 400; }
+@media (max-width: 768px) { .ar-close { top: 6vw; left: 6vw; } .ar-name { top: 6vw; right: 6vw; } .ar-actions { bottom: 12vh; } }
+
+/* Gallery (DOM stand-in for the WebGL ImgOverlay) */
+.overlay--gallery { z-index: var(--z-gallery); background: rgba(0, 0, 0, .91); overflow: hidden; }
+.gallery-close { position: fixed; top: var(--close-top); left: calc(var(--u) * 8); z-index: 3; }
+.gallery-layout { position: fixed; top: var(--close-top); right: calc(var(--u) * 8); z-index: 3; display: flex; gap: 1rem; }
+.gallery-layout button[aria-pressed="true"] { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.gallery-track { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; gap: 6vh; overflow-y: auto; padding: 20vh 0; scroll-snap-type: y mandatory; }
+.gallery-track.is-right { flex-direction: row; overflow-x: auto; overflow-y: hidden; padding: 0 30vw; scroll-snap-type: x mandatory; align-items: center; }
+.gallery-track img { width: min(40vw, 420px); height: auto; background: #fff; scroll-snap-align: center; flex: none; }
+@media (max-width: 768px) { .gallery-track img { width: 76vw; } .gallery-close { left: 6vw; top: 6vw; } .gallery-layout { right: 6vw; top: 6vw; } }

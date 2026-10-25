@@ -1,0 +1,104 @@
+/* =============================================================================
+   base.css — reset, stage, bracket buttons, focus states, fallbacks
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  overflow: hidden;              /* every route is one 100dvh stage */
+  -webkit-font-smoothing: antialiased;
+}
+/* The original kills text selection (fix #2 in the notes): we keep it, but tint it brand red. */
+::selection { background: var(--red); color: #fff; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: inherit; }
+img, svg, canvas { display: block; }
+
+#boot {
+  position: fixed; inset: 0; display: grid; place-items: center;
+  background: var(--bg-boot); color: var(--fg);
+  font: 500 14px/1 var(--font); letter-spacing: .2rem; z-index: calc(var(--z-preloader) + 1);
+  pointer-events: none; transition: opacity .3s ease;
+}
+#boot.is-gone { opacity: 0; }
+
+#app { position: fixed; inset: 0; }
+
+.page {
+  position: absolute; inset: 0; height: 100dvh; overflow: hidden;
+  outline: none;
+}
+.page.is-scroll { overflow-y: auto; overscroll-behavior: contain; }
+
+.stage { position: absolute; inset: 0; }
+.stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; touch-action: none; }
+
+/* Ghost wordmark behind the WebGL canvas: 5vw, 5% white, difference blend */
+.ghost {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  margin: 0; width: max-content; max-width: 96vw; text-align: center;
+  font-size: 5vw; font-weight: 900; letter-spacing: .05em; line-height: 1;
+  color: var(--fg-05); mix-blend-mode: difference; pointer-events: none; user-select: none;
+  text-transform: none; white-space: pre-line;
+}
+.ghost--shop { font-size: 8vw; }
+.ghost--404 { z-index: 10; color: rgba(255, 255, 255, .12); }
+@media (max-width: 768px) { .ghost { font-size: 12vw; } .ghost--shop { font-size: 14vw; } }
+
+/* Bracket grammar: buttons are plain text in brackets, no boxes */
+.btn-bracket {
+  appearance: none; background: none; border: 0; padding: 4px 2px; margin: 0;
+  color: var(--fg); text-transform: uppercase; letter-spacing: .1em; cursor: pointer;
+  text-decoration: none; display: inline-block; transition: color .2s ease;
+}
+.btn-bracket:hover, .btn-bracket:focus-visible { color: var(--red-hover); }
+.btn-bracket[disabled], .btn-bracket[aria-disabled="true"] { opacity: .45; cursor: not-allowed; color: var(--fg); }
+.btn-outline {
+  appearance: none; background: none; color: var(--fg); cursor: pointer; text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, .25); padding: .5rem 1.5rem; letter-spacing: .1em; text-transform: uppercase;
+}
+.btn-outline:hover, .btn-outline:focus-visible { border-color: var(--red-hover); color: var(--red-hover); }
+
+/* Keyboard focus states (the original had none worth the name) */
+:focus { outline: none; }
+:focus-visible { outline: 1px dashed var(--red-hover); outline-offset: 3px; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offset: 0; }
+
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: fixed; left: 8px; top: -60px; z-index: var(--z-cursor); background: #fff; color: #000;
+  padding: 6px 10px; text-decoration: none; text-transform: uppercase; letter-spacing: .1em; font-size: 11px;
+}
+.skip-link:focus { top: 8px; }
+
+/* ScrambleText: the visible span is aria-hidden; the real string sits in .sr-only next to it */
+.scramble { display: inline; white-space: pre-wrap; }
+.scramble-vis { font-variant-numeric: tabular-nums; }
+
+/* No-WebGL / CDN-down fallback: static SVG product art */
+.fallback {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 4vw;
+  padding: 18vh 6vw 14vh; flex-wrap: wrap;
+}
+.fallback figure { margin: 0; text-align: center; }
+.fallback img { width: min(32vw, 340px); height: auto; filter: grayscale(1) contrast(1.1); }
+.fallback figcaption { margin-top: .75rem; letter-spacing: .1em; text-transform: uppercase; font-size: 11px; color: var(--fg-80); }
+.fallback a { text-decoration: none; }
+.fallback a:hover figcaption, .fallback a:focus-visible figcaption { color: var(--red-hover); }
+.fallback-note {
+  position: absolute; left: 50%; bottom: 12vh; transform: translateX(-50%); width: min(90vw, 520px);
+  text-align: center; font-size: 10px; letter-spacing: .1em; color: var(--fg-40); text-transform: uppercase;
+}
+@media (max-width: 768px) { .fallback img { width: 70vw; } }
+.noscript { position: fixed; inset: auto 1rem 1rem; color: #fff; }
+
+/* Keyboard-only product list on the shop (visible on focus) */
+.kbd-list { position: absolute; left: 1rem; top: 5rem; z-index: var(--z-hud); display: flex; flex-direction: column; gap: 4px; }
+.kbd-list button { opacity: 0; pointer-events: none; }
+.kbd-list button:focus-visible { opacity: 1; pointer-events: auto; }

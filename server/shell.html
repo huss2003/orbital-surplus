@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- SEO tags below carry data-seo: the Node server replaces them per route (prerendered shell). -->
+  <title data-seo>ORBITAL SURPLUS — outerwear depot in orbit, 2051</title>
+  <meta data-seo name="description" content="ORBITAL SURPLUS is an outerwear depot in orbit, 2051: six jackets you explore in real-time 3D and try on in AR.">
+  <meta data-seo property="og:title" content="ORBITAL SURPLUS">
+  <meta data-seo property="og:description" content="Outerwear depot in orbit, 2051. Six jackets in real-time 3D and AR.">
+  <meta data-seo property="og:type" content="website">
+  <meta data-seo property="og:image" content="/img/og.png">
+  <meta data-seo name="twitter:card" content="summary_large_image">
+  <link data-seo rel="canonical" href="/">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Crect width='8' height='8' fill='%23000'/%3E%3Crect x='2' y='2' width='4' height='4' fill='%23C8FF2E'/%3E%3C/svg%3E">
+
+  <!-- Fonts: DotGothic16 for everything, DM Mono only for the playground title (design-notes §1 Typography) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DotGothic16&display=swap">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/chrome.css">
+  <link rel="stylesheet" href="/css/hud.css">
+  <link rel="stylesheet" href="/css/cursor.css">
+  <link rel="stylesheet" href="/css/curtain.css">
+  <link rel="stylesheet" href="/css/overlays.css">
+  <link rel="stylesheet" href="/css/commerce.css">
+  <link rel="stylesheet" href="/css/motion.css">
+
+  <!-- Pinned CDN modules. If jsDelivr is unreachable the app still renders:
+       gsap falls back to a tiny tween engine, three falls back to static SVGs. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.182.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.182.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js"
+    }
+  }
+  </script>
+  <link rel="modulepreload" href="/js/main.js">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="boot" aria-hidden="true">[ORBITAL SURPLUS]</div>
+  <div id="app"></div>
+
+  <!-- The server injects the per-route text version as <noscript id="seo-content"> right after <body>
+       (server/seo.js renderPage). Kept out of this file to avoid a duplicate id. -->
+
+  <noscript>
+    <p class="noscript">ORBITAL SURPLUS needs JavaScript for its 3D storefront. Browse the text version above, or see <a href="/shop">/shop</a>.</p>
+  </noscript>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

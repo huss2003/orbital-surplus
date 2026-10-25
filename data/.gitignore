@@ -1,0 +1,4 @@
+# Runtime state written by the server (the seed catalog products.json stays tracked).
+*
+!.gitignore
+!products.json

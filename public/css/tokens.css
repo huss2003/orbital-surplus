@@ -1,0 +1,67 @@
+/* =============================================================================
+   tokens.css — design tokens (design-notes §1)
+   Black, white at fixed opacities, one brand red + one hover red.
+   ========================================================================== */
+:root {
+  /* colour */
+  --bg: #000;
+  --bg-boot: #0a0a0a;             /* preloader / #boot */
+  --fg: #fff;
+  --fg-96: rgba(255, 255, 255, .96); /* body values */
+  --fg-80: rgba(255, 255, 255, .8);  /* nav / footer */
+  --fg-60: rgba(255, 255, 255, .6);  /* secondary labels */
+  --fg-40: rgba(255, 255, 255, .4);  /* HUD micro */
+  --fg-30: rgba(255, 255, 255, .3);
+  --fg-20: rgba(255, 255, 255, .2);  /* [X] cross marks, table borders */
+  --fg-05: rgba(255, 255, 255, .05); /* ghost wordmark */
+  --scrim: rgba(0, 0, 0, .91);       /* Info / BuyNow / Contact overlays */
+  --red: #C8FF2E;                    /* brand: cursor, curtain fringe, 404 hover */
+  --red-hover: #E4FF7A;              /* every hover, price, selected size */
+  --cyan-glitch: #00e5ff;
+  --dash: 1px dashed rgba(255, 255, 255, .5);
+
+  /* type */
+  --font: 'DotGothic16', ui-monospace, monospace;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+  --fs-nav: 11px;
+  --fs-body: 13px;
+  --fs-micro: 9px;   /* original 8px; raised for legibility (fix #7) */
+  --fs-cross: 14px;
+  --ls-nav: .15em;
+  --ls-logo: .2em;
+
+  /* 32-column viewport grid: 100vw / 32 = 3.125vw (45px @1440) */
+  --u: 3.125vw;
+  --u-half: 1.5625vw;
+  --close-top: calc(var(--u) * 3);           /* 9.375vw */
+  --close-left: 32.03125vw;                  /* ≈10.25 units: Info / BuyNow / Contact */
+  --hud-col: calc(var(--u) * 4);             /* 12.5vw side columns */
+  --hud-gap: var(--u-half);
+  --overlay-pad: 6vh 32.0235vw;
+
+  /* z-index stack (design-notes §1 Z-index) */
+  --z-cursor: 2147483647;
+  --z-modal: 99999;      /* BuyNow / Contact / Cart drawer */
+  --z-preloader: 10000;
+  --z-curtain: 9999;
+  --z-gallery: 6000;
+  --z-info: 5000;
+  --z-hud: 100;
+  --z-nav: 50;
+
+  /* signature eases, as CSS for the few CSS-driven transitions */
+  --ease-fade: cubic-bezier(.19, 1, .22, 1);       /* Vue fade .6s */
+  --ease-ribbon: cubic-bezier(.16, 1, .3, 1);
+}
+
+@media (max-width: 1024px) {
+  :root { --hud-col: calc(var(--u) * 8); --fs-body: 12px; }
+}
+@media (max-width: 768px) {
+  :root {
+    --hud-col: 40.625vw; --hud-gap: 4.6875vw;
+    --fs-nav: 10px; --fs-body: 11px; --ls-nav: .1em;
+    --close-top: calc(var(--u) * 6); --close-left: calc(var(--u) * 4.125);
+    --overlay-pad: 6vh 7.5vw;
+  }
+}

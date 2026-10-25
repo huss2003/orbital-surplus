@@ -1,0 +1,90 @@
+/* =============================================================================
+   commerce.css — cart lines, /cart, /checkout, /checkout/pay/:id, /order/:token
+   (the original had none of this; styled in the same bracket/dashed grammar)
+   ========================================================================== */
+.shop-page { padding: 7.5rem calc(var(--u) * 2) 6rem; min-height: 100%; }
+.shop-page-inner { max-width: 980px; margin: 0 auto; }
+.shop-page h1 { font-size: 14px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 2rem; }
+.shop-page h2 { font-size: var(--fs-body); font-weight: 400; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 1rem; color: var(--fg-80); }
+.cols { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 3.5rem; }
+@media (max-width: 860px) { .cols { grid-template-columns: 1fr; gap: 2.5rem; } .shop-page { padding: 6rem 6vw 5rem; } }
+
+.cart-lines { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+.cart-line { display: grid; grid-template-columns: 64px 1fr auto; gap: 1rem; padding: 1rem 0; border-bottom: .5px solid var(--fg-20); align-items: center; }
+.cart-line img { width: 64px; height: 64px; object-fit: cover; background: #0a0a0a; }
+.cart-line-name { text-transform: uppercase; letter-spacing: .05em; }
+.cart-line-meta { color: var(--fg-60); font-size: 11px; }
+.cart-line-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: .25rem; }
+.qty { display: inline-flex; align-items: center; gap: .25rem; }
+.qty button { min-width: 28px; min-height: 28px; }
+.qty output { min-width: 1.5em; text-align: center; font-variant-numeric: tabular-nums; }
+.cart-empty { color: var(--fg-60); text-transform: uppercase; letter-spacing: .1em; padding: 1rem 0 2rem; }
+
+.totals { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-variant-numeric: tabular-nums; }
+.totals th { text-align: left; font-weight: 400; color: var(--fg-60); text-transform: uppercase; letter-spacing: .08em; padding: .3rem 0; }
+.totals td { text-align: right; padding: .3rem 0; }
+.totals tr.total th, .totals tr.total td { color: #fff; border-top: .5px solid var(--fg-20); padding-top: .7rem; }
+.totals .neg { color: var(--red-hover); }
+
+.discount-form { display: flex; gap: .5rem; align-items: stretch; margin: 1rem 0; }
+.discount-applied { display: flex; justify-content: space-between; align-items: center; margin: 1rem 0; color: var(--fg-80); text-transform: uppercase; letter-spacing: .08em; font-size: 11px; }
+
+.field { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+.field label, .field legend { font-size: 10px; letter-spacing: .14em; color: var(--fg-60); text-transform: uppercase; padding: 0; }
+.field input, .field select, .field textarea, .discount-form input {
+  background: transparent; border: 0; border-bottom: 1px dashed rgba(255, 255, 255, .45); padding: .55rem 0;
+  color: #fff; border-radius: 0; width: 100%; letter-spacing: .04em;
+}
+.field select { appearance: none; background: #000; }
+.field input:focus, .field select:focus, .field textarea:focus, .discount-form input:focus { border-bottom: 1px solid var(--red-hover); }
+.field input[aria-invalid="true"] { border-bottom-color: var(--red-hover); }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+fieldset { border: 0; padding: 0; margin: 0 0 1rem; min-width: 0; }
+.rates { display: flex; flex-direction: column; gap: .4rem; margin-top: .35rem; }
+.rate { display: flex; gap: .75rem; align-items: center; padding: .55rem .6rem; border: 1px dashed var(--fg-20); cursor: pointer; }
+.rate:has(input:checked) { border-color: var(--red-hover); }
+.rate input { accent-color: var(--red-hover); width: auto; flex: none; margin: 0; }
+.rate span:last-child { margin-left: auto; font-variant-numeric: tabular-nums; }
+.form-error { color: var(--red-hover); min-height: 1.6em; font-size: 11px; letter-spacing: .06em; }
+.form-ok { color: var(--fg-80); min-height: 1.6em; font-size: 11px; letter-spacing: .06em; }
+.test-card {
+  border: 1px dashed var(--fg-30); padding: .75rem 1rem; margin-bottom: 1.25rem; font-size: 11px; line-height: 1.8;
+  letter-spacing: .06em; color: var(--fg-80);
+}
+.test-card code { color: #fff; font-family: var(--font); letter-spacing: .12em; }
+.btn-primary {
+  appearance: none; background: none; border: 0; color: #fff; cursor: pointer; padding: .6rem 0; font-size: 14px;
+  letter-spacing: .2em; text-transform: uppercase;
+}
+.btn-primary:hover, .btn-primary:focus-visible { color: var(--red-hover); }
+.btn-primary[disabled] { opacity: .45; cursor: progress; }
+.order-meta { display: grid; grid-template-columns: minmax(0, 140px) 1fr; gap: .5rem 1.5rem; margin: 0 0 2rem; }
+.order-meta dt { color: var(--fg-60); text-transform: uppercase; letter-spacing: .1em; font-size: 11px; }
+.order-meta dd { margin: 0; }
+.badge { color: var(--red-hover); }
+
+/* ---- ORBITAL SURPLUS additions: accounts, order tracking, checkout notes ---- */
+.check { display: flex; gap: .6rem; align-items: center; font-size: 10px; letter-spacing: .12em; color: var(--fg-80); margin: 0 0 1rem; cursor: pointer; }
+.check input { accent-color: var(--red); width: auto; margin: 0; }
+.pay-note { margin-top: 1rem; line-height: 1.8; }
+.shop-page a:not(.btn-bracket) { color: #fff; text-underline-offset: 3px; }
+.shop-page a:not(.btn-bracket):hover { color: var(--red-hover); }
+.badge { color: var(--red); font-size: 11px; letter-spacing: .12em; }
+.track { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 0 0 2.5rem; padding: 0; counter-reset: t; }
+.track li { border-top: 2px solid var(--fg-20); padding-top: .7rem; font-size: 10px; letter-spacing: .14em; color: var(--fg-60); text-transform: uppercase; }
+.track li.done { border-color: var(--red); color: #fff; }
+.track li.now { border-color: var(--red); color: var(--red); }
+.track li small { display: block; color: var(--fg-60); letter-spacing: .06em; margin-top: .25rem; text-transform: none; }
+.tabs { display: flex; gap: 1.25rem; margin: 0 0 2rem; }
+.tabs button { appearance: none; background: none; border: 0; color: var(--fg-60); letter-spacing: .16em; font-size: 12px; cursor: pointer; padding: .3rem 0; border-bottom: 1px dashed transparent; }
+.tabs button[aria-selected="true"] { color: #fff; border-bottom-color: var(--red); }
+.acct-orders { list-style: none; padding: 0; margin: 0 0 2rem; }
+.acct-orders li a { display: grid; grid-template-columns: 52px 1fr auto; gap: 1rem; align-items: center; padding: .8rem 0; border-bottom: .5px solid var(--fg-20); text-decoration: none; }
+.acct-orders img { width: 52px; height: 52px; object-fit: cover; background: #0a0a0a; }
+.order-meta { display: grid; grid-template-columns: 110px 1fr; gap: .45rem 1rem; margin: 0 0 1.5rem; font-size: 12px; }
+.order-meta dt { color: var(--fg-60); text-transform: uppercase; letter-spacing: .1em; font-size: 10px; padding-top: 2px; }
+.order-meta dd { margin: 0; }
+.free-ship { font-size: 10px; letter-spacing: .1em; color: var(--fg-60); margin: .5rem 0 0; }
+.free-ship i { display: block; height: 2px; background: var(--fg-20); margin-top: .4rem; position: relative; overflow: hidden; }
+.free-ship i b { position: absolute; inset: 0 auto 0 0; background: var(--red); }
+.low-stock { color: var(--red); font-size: 10px; letter-spacing: .1em; }

@@ -1,0 +1,17 @@
+/* =============================================================================
+   motion.css — reduced-motion overrides (the original had none: design-notes §8)
+   JS also reads the media query: no auto-rotate, no curtain (.3s fade instead),
+   no scramble, no edge FX / glitch / barcode flicker, no intro dolly.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .2s !important; scroll-behavior: auto !important;
+  }
+  .is-glitching .preview { animation: none !important; }
+  .is-open .sub-square { animation: none !important; }
+  .curtain:not(.curtain--css) { display: none !important; }
+  .ghost { display: none; }   /* looping scramble wordmark is pure decoration */
+}
+/* Manual override used by the test harness / designers: <html class="reduce-motion"> */
+html.reduce-motion .ghost { display: none; }

@@ -1,0 +1,81 @@
+{
+  "_comment": "Seed catalog for ORBITAL SURPLUS. Prices in cents (USD). `inventory` is starting stock per size; it is copied into Postgres on first boot and managed from /admin after that.",
+  "size_chart": {
+    "unit": "cm",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "rows": [
+      { "label": "Shoulder Width", "values": { "S": 44, "M": 46, "L": 48, "XL": 50, "XXL": 52 } },
+      { "label": "Chest", "values": { "S": 104, "M": 110, "L": 116, "XL": 122, "XXL": 128 } },
+      { "label": "Body Length", "values": { "S": 66, "M": 68, "L": 70, "XL": 72, "XXL": 74 } },
+      { "label": "Sleeve Length", "values": { "S": 63, "M": 64, "L": 65, "XL": 67, "XXL": 69 } }
+    ]
+  },
+  "products": [
+    {
+      "id": "perigee", "sku": "001", "slug": "perigee-moto-jacket",
+      "name": "Perigee Moto Jacket", "category": "Moto Jacket", "color": "Vacuum Black",
+      "price": 14800, "currency": "USD", "sizes": ["S", "M", "L", "XL", "XXL"],
+      "inventory": { "S": 6, "M": 10, "L": 8, "XL": 4, "XXL": 0 },
+      "description": "Cut for the closest point of the orbit. The Perigee is a cropped moto in high-gloss faux leather with an asymmetric front zip that runs from the hem to a notched lapel.\n\nA cinch belt sits low on the waist, both cuffs zip open, and two angled pockets keep tools within reach in low gravity. It's shaped close to the body so it layers under a suit liner without bunching.\n\nInside: a slick lining, one zipped interior pocket and a printed docking-bay manifest on the hanger loop.",
+      "materials": ["75% PU Faux Leather", "25% Polyester lining"],
+      "care": ["Do not machine wash", "Wipe clean with a damp cloth", "Do not bleach", "Do not tumble dry", "Store away from direct sunlight (and solar flares)"],
+      "images": ["/img/perigee-moto-jacket-front.png", "/img/perigee-moto-jacket-back.png"],
+      "model": { "type": "procedural", "variant": "moto" }
+    },
+    {
+      "id": "apogee", "sku": "002", "slug": "apogee-bomber",
+      "name": "Apogee Bomber", "category": "Bomber Jacket", "color": "Vacuum Black",
+      "price": 16200, "currency": "USD", "sizes": ["S", "M", "L", "XL", "XXL"],
+      "inventory": { "S": 5, "M": 9, "L": 9, "XL": 6, "XXL": 3 },
+      "description": "Built for the far end of the orbit. A straight-fit bomber in faux leather pressed with a hexagonal hull texture, finished with knit rib at the collar, cuffs and hem.\n\nThree reflective rings on each sleeve pick up station lighting. Flap pockets and a welt chest pocket keep the front clean, and the full-length zip runs up into the collar.\n\nThe hex emboss is deep enough to read across a docking bay and soft enough to wear every shift.",
+      "materials": ["75% PU Faux Leather", "25% Polyester", "Rib: 95% Cotton, 5% Elastane"],
+      "care": ["Do not machine wash", "Wipe clean with a damp cloth", "Do not bleach", "Do not tumble dry", "Store flat or on a wide hanger"],
+      "images": ["/img/apogee-bomber-front.png", "/img/apogee-bomber-back.png"],
+      "model": { "type": "procedural", "variant": "bomber" }
+    },
+    {
+      "id": "reentry", "sku": "003", "slug": "reentry-puffer",
+      "name": "Reentry Puffer", "category": "Puffer Jacket", "color": "Flight Orange",
+      "price": 21000, "currency": "USD", "sizes": ["S", "M", "L", "XL", "XXL"],
+      "inventory": { "S": 4, "M": 7, "L": 7, "XL": 5, "XXL": 2 },
+      "description": "Flight-orange so the recovery crew can find you. The Reentry is a boxy puffer with horizontal baffles from collar to hem and quilted sleeves that keep their loft when compressed into a locker.\n\nKnit cuffs and a rib hem seal out the draught, the stand collar zips right up, and a matte black patch on the chest takes a crew name tag.\n\nFilled with recycled synthetic insulation that stays warm when it's damp, and packs into its own pocket.",
+      "materials": ["Shell: 100% Recycled Nylon ripstop", "Fill: 100% Recycled Polyester", "Rib: Polyester/Elastane"],
+      "care": ["Machine wash cold, gentle cycle", "Tumble dry low with dryer balls to restore loft", "Do not iron", "Do not dry clean"],
+      "images": ["/img/reentry-puffer-front.png", "/img/reentry-puffer-back.png"],
+      "model": { "type": "procedural", "variant": "puffer" }
+    },
+    {
+      "id": "tether", "sku": "004", "slug": "tether-shell",
+      "name": "Tether Shell", "category": "Hooded Shell", "color": "Lunar Grey",
+      "price": 18600, "currency": "USD", "sizes": ["S", "M", "L", "XL", "XXL"],
+      "inventory": { "S": 5, "M": 8, "L": 8, "XL": 4, "XXL": 2 },
+      "description": "A three-layer hooded shell for wet decks and worse. Every seam is taped in signal lime so you can see the build, and the hood has a stiffened peak with lime toggle cords.\n\nAn angled chest zip, two hand-warmer pockets and hook-and-loop cuffs. The dropped back hem keeps you covered when you're bent over a hatch.\n\nWaterproof, windproof and breathable, with a soft brushed backer that's quiet when you move.",
+      "materials": ["3-layer Recycled Polyester with PFC-free DWR", "Seam tape: Polyurethane"],
+      "care": ["Machine wash cold with technical wash", "Close all zips before washing", "Tumble dry low to reactivate DWR", "Do not use fabric softener"],
+      "images": ["/img/tether-shell-front.png", "/img/tether-shell-back.png"],
+      "model": { "type": "procedural", "variant": "shell" }
+    },
+    {
+      "id": "ballast", "sku": "005", "slug": "ballast-field-jacket",
+      "name": "Ballast Field Jacket", "category": "Field Jacket", "color": "Hab Olive",
+      "price": 17400, "currency": "USD", "sizes": ["S", "M", "L", "XL", "XXL"],
+      "inventory": { "S": 3, "M": 8, "L": 9, "XL": 6, "XXL": 3 },
+      "description": "Four pockets, no wasted mass. The Ballast is a heavy cotton-twill field jacket in habitat olive, with two bellowed chest pockets, two big cargo pockets and a snap on every flap.\n\nA button placket closes over the zip, the stand-fall collar flips up against the wind, and a drawcord at the waist pulls the shape in. There's a utility pocket on the left sleeve sized for a pen or a torch.\n\nGarment-washed, so it feels broken in from the first shift.",
+      "materials": ["100% Organic Cotton twill, 340 gsm", "Lining: 100% Cotton poplin"],
+      "care": ["Machine wash cold, inside out", "Line dry", "Warm iron if needed", "Colour may soften with wear"],
+      "images": ["/img/ballast-field-jacket-front.png", "/img/ballast-field-jacket-back.png"],
+      "model": { "type": "procedural", "variant": "field" }
+    },
+    {
+      "id": "drift", "sku": "006", "slug": "drift-coach-jacket",
+      "name": "Drift Coach Jacket", "category": "Coach Jacket", "color": "Deep-Space Navy",
+      "price": 12800, "currency": "USD", "sizes": ["S", "M", "L", "XL", "XXL"],
+      "inventory": { "S": 6, "M": 10, "L": 10, "XL": 7, "XXL": 4 },
+      "description": "The off-shift layer. A light coach jacket in deep-space navy nylon with a snap front, a turn-down collar and a drawcord hem with lime toggles.\n\nOn the left chest, a small printed orbit mark. Welt hand pockets, knit-backed cuffs and a mesh lining let it breathe in the warm sections of the station.\n\nLight enough to stuff in a bag, smart enough for the commissary.",
+      "materials": ["Shell: 100% Nylon taslan", "Lining: 100% Polyester mesh"],
+      "care": ["Machine wash cold", "Hang to dry", "Do not iron the print", "Do not bleach"],
+      "images": ["/img/drift-coach-jacket-front.png", "/img/drift-coach-jacket-back.png"],
+      "model": { "type": "procedural", "variant": "coach" }
+    }
+  ]
+}

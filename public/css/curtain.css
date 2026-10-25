@@ -1,0 +1,28 @@
+/* =============================================================================
+   curtain.css — RevealOverlay ("dither curtain", §4.1) + Preloader (§3.2)
+   ========================================================================== */
+.curtain {
+  position: fixed; inset: 0; z-index: var(--z-curtain); pointer-events: none;
+  width: 100vw; height: 100dvh; image-rendering: pixelated;
+}
+/* Before the shader is ready the canvas is plain white (the original's .is-pending) */
+.curtain.is-pending { background: #fff; }
+.curtain.is-open { display: none; }
+/* CSS fallback curtain (no WebGL / reduced motion): a white sheet that fades */
+.curtain--css { background: #fff; opacity: 1; }
+
+.preloader {
+  position: fixed; inset: 0; z-index: var(--z-preloader); background: var(--bg-boot);
+  display: grid; place-items: center; cursor: pointer;
+}
+.preloader-word {
+  mix-blend-mode: difference; color: #fff; margin: 0; font: 500 14px/1 var(--font);
+  letter-spacing: .2rem; font-variant-numeric: tabular-nums; text-transform: uppercase; white-space: pre;
+}
+.preloader-skip {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); font-size: 9px; letter-spacing: .2em;
+  color: var(--fg-30); background: none; border: 0; cursor: pointer; text-transform: uppercase;
+}
+.preloader-skip:hover, .preloader-skip:focus-visible { color: var(--red-hover); }
+@media (max-width: 1024px) { .preloader-word { letter-spacing: .1rem; } }
+@media (max-width: 768px) { .preloader-word { font-size: 12px; } }
